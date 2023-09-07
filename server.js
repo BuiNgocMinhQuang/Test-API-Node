@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const productRoute = require("./routes/productRoute");
+const userRoute = require("./routes/userRoute");
 const errorMiddleware = require("./middleware/errorMiddleware");
 const cors = require("cors");
 
@@ -20,9 +21,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 //routes
+app.use(cors());
 
 app.use("/api/products", productRoute);
-app.use(cors());
+app.use("/api/users", userRoute);
 
 app.get("/", (req, res) => {
   res.send("Hello This Is Res");
